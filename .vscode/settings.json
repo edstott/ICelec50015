@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/9c997886-2ff3-4ffe-af57-07c1b094a76e/resourceGroups/ELEC50015/providers/Microsoft.Web/sites/ICelec50015",
+    "appService.deploySubpath": "."
+}
