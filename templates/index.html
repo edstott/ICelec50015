@@ -1,0 +1,28 @@
+<!doctype html>
+
+<head>
+  <title>Hello Azure - Python Quickstart</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap/css/bootstrap.min.css') }}">
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<html>
+
+<body>
+  <main>
+    <div class="px-4 py-3 my-2 text-center">
+      <h1 class="display-6 fw-bold text-primary">ELEC50015 Smart Grid Information Server</h1>
+    </div>
+    <div>
+      <p>Get data to drive your energy <span class=GramE>optimisation</span></p>
+      <p><a href="{{ url_for('get_sun')}}">Live sunshine intensity</a></p>
+      <p><a href="{{ url_for('get_price')}}">Live energy prices</a></p>
+      <p><a href="{{ url_for('get_demand')}}">Live power demand</a></p>
+      <p><a href="{{ url_for('get_deferables')}}">Today's deferrable energy demands</a></p>
+      <p><a href="{{ url_for('get_yesterday')}}">Yesterday's price and demand evolution</a></p>
+    </div>
+
+
+  </main>
+</body>
+
+</html>

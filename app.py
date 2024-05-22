@@ -1,7 +1,9 @@
-from flask import Flask
+import os
+
+from flask import (Flask, redirect, render_template, request,
+                   send_from_directory, url_for)
 import time
 import math
-import json
 import random
 
 SECS_PER_DAY = 300.0
@@ -29,25 +31,15 @@ MIN_DEMAND_DURATION = 10
 
 app = Flask(__name__)
 
-INDEX = """<html>
-<body lang=EN-GB link="#467886" vlink="#96607D" style='tab-interval:36.0pt;
-word-wrap:break-word'>
-<div class=WordSection1>
-<h1>ELEC50015 Energy System information Server</h1>
-<p>Get data to drive your energy <span class=GramE>optimisation</span></p>
-<p><a href="/sun">Live sunshine intensity</a></p>
-<p><a href="/price">Live energy prices</a></p>
-<p><a href="/demand">Live power demand</a></p>
-<p><a href="/deferables">Today's deferrable energy demands</a></p>
-<p><a href="/yesterday">Yesterday's price and demand evolution</a></p>
-</div>
-</body>
-</html>"""
+@app.route('/')
+def index():
+   print('Request for index page received')
+   return render_template('index.html')
 
-@app.route("/")
-def hello_world():
-    return INDEX
-
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'),
+                               'favicon.ico', mimetype='image/vnd.microsoft.icon')
 @app.route("/sun")
 def get_sun():
     _,tick = getTick()
@@ -138,3 +130,7 @@ def getDefDemands(day):
                 end = start + MIN_DEMAND_DURATION
         data.append({"start": start, "end": end, "energy": energy})
     return data
+
+
+if __name__ == '__main__':
+   app.run()
